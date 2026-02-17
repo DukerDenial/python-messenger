@@ -1,12 +1,19 @@
 import os
 import sqlite3
 import bcrypt
+import random
 from flask import Flask, render_template, request, jsonify, send_from_directory
 from flask_socketio import SocketIO, emit
 from flask_jwt_extended import (
     JWTManager, create_access_token,
     jwt_required, get_jwt_identity
 )
+
+DEFAULT_AVATARS = [
+    "default1.png",
+    "default2.png",
+    "default3.png"
+]
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "super-secret"
@@ -67,10 +74,12 @@ def register():
 
     hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
 
+    default_avatar = random.choice(DEFAULT_AVATARS)
+
     try:
         cursor.execute(
-            "INSERT INTO users (username, password) VALUES (?,?)",
-            (username, hashed)
+            "INSERT INTO users (username, password, avatar) VALUES (?,?,?)",
+            (username, hashed, default_avatar)
         )
         conn.commit()
         return jsonify({"success": True})
@@ -149,8 +158,13 @@ def private_message(data):
     )
     conn.commit()
 
+    # Отправить получателю
     if receiver in online_users:
         emit("private_message", data, room=online_users[receiver])
+
+    # Отправить отправителю (чтобы отобразилось)
+    emit("private_message", data, room=online_users[sender])
+
 
 
 @socketio.on("disconnect")

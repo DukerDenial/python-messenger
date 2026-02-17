@@ -24,6 +24,47 @@ socket.on("online_users", users => {
     });
 });
 
+async function register() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    const res = await fetch("/register", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({username,password})
+    });
+
+    const data = await res.json();
+
+    if(data.success){
+        login();
+    } else {
+        document.getElementById("authError").textContent = data.error;
+    }
+}
+
+async function login() {
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    const res = await fetch("/login", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({username,password})
+    });
+
+    const data = await res.json();
+
+    if(data.token){
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("username", username);
+        window.location="/chat";
+    } else {
+        document.getElementById("authError").textContent = data.error;
+    }
+}
+
+
 function openChat(user) {
     currentChat = user;
     document.getElementById("chatName").textContent = user;
@@ -44,7 +85,6 @@ function sendMessage() {
         message: message
     });
 
-    addMessage("me", message);
     input.value = "";
 }
 
