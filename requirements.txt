@@ -1,5 +1,11 @@
-flask
-flask-socketio
-flask-jwt-extended
-eventlet
-bcrypt
+fastapi
+uvicorn
+sqlalchemy
+asyncpg
+psycopg2-binary
+python-jose
+passlib[bcrypt]
+python-multipart
+redis
+websockets
+boto3
