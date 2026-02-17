@@ -1,28 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<title>Messenger</title>
 <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
-<div class="topbar">
-    <h3>Messenger</h3>
-    <button onclick="openProfile()">👤</button>
-</div>
+<div class="app">
 
-<div class="sidebar">
-    <h4>Online</h4>
-    <ul id="onlineList"></ul>
-</div>
+    <!-- LEFT SIDEBAR -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <div class="profile-block">
+                <img id="myAvatar" class="avatar">
+                <span id="myName"></span>
+            </div>
+            <input id="search" placeholder="Search...">
+        </div>
 
-<div class="chat">
-    <div id="messages"></div>
-    <input id="receiver" placeholder="Send to...">
-    <input id="msg" placeholder="Message">
-    <button onclick="send()">Send</button>
-</div>
+        <ul id="dialogList" class="dialog-list"></ul>
+    </div>
 
-<input type="file" id="avatarUpload" onchange="uploadAvatar()">
+    <!-- CHAT AREA -->
+    <div class="chat-area">
+
+        <div class="chat-header">
+            <div class="chat-user">
+                <img id="chatAvatar" class="avatar">
+                <div>
+                    <div id="chatName"></div>
+                    <div id="chatStatus" class="status"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="messages" class="messages"></div>
+
+        <div class="chat-input">
+            <input id="messageInput" placeholder="Write a message...">
+            <button onclick="sendMessage()">➤</button>
+        </div>
+
+    </div>
+
+</div>
 
 <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
 <script src="/static/script.js"></script>
