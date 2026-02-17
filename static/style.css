@@ -1,0 +1,71 @@
+body {
+    background:#0f0f14;
+    color:white;
+    font-family:Arial;
+    display:flex;
+    height:100vh;
+    margin:0;
+}
+
+.auth-box {
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+}
+
+input, button {
+    padding:10px;
+    border:none;
+    border-radius:8px;
+}
+
+input {
+    background:#1e1e28;
+    color:white;
+}
+
+button {
+    background:linear-gradient(45deg,#6a5acd,#00bfff);
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover {
+    transform:scale(1.05);
+}
+
+.topbar {
+    position:absolute;
+    top:0;
+    width:100%;
+    padding:10px;
+    background:#1a1a22;
+    display:flex;
+    justify-content:space-between;
+}
+
+.sidebar {
+    width:200px;
+    background:#1a1a22;
+    padding:10px;
+}
+
+.chat {
+    flex:1;
+    padding:20px;
+}
+
+#messages div {
+    margin:5px;
+    padding:8px;
+    background:#1e1e28;
+    border-radius:8px;
+    animation:fade 0.3s;
+}
+
+@keyframes fade {
+    from {opacity:0; transform:translateY(10px);}
+    to {opacity:1; transform:translateY(0);}
+}

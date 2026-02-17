@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="topbar">
+    <h3>Messenger</h3>
+    <button onclick="openProfile()">👤</button>
+</div>
+
+<div class="sidebar">
+    <h4>Online</h4>
+    <ul id="onlineList"></ul>
+</div>
+
+<div class="chat">
+    <div id="messages"></div>
+    <input id="receiver" placeholder="Send to...">
+    <input id="msg" placeholder="Message">
+    <button onclick="send()">Send</button>
+</div>
+
+<input type="file" id="avatarUpload" onchange="uploadAvatar()">
+
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<script src="/static/script.js"></script>
+</body>
+</html>
