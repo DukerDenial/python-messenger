@@ -1,9 +1,23 @@
+:root {
+    --bg-main: #0f172a;
+    --bg-sidebar: #111827;
+    --bg-card: #1f2937;
+    --bg-input: #1e293b;
+    --accent: #2563eb;
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+}
+
 .auth-body {
     background: radial-gradient(circle at top left, #1e3a8a, #0f172a);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+    min-height:100vh;
 }
 
 .auth-wrapper {
